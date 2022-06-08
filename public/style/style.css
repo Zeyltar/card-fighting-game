@@ -1,0 +1,655 @@
+* {
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+html, body{
+    height: 100%;
+}
+
+body {
+    margin:0;
+    padding: 0;
+    font-family: Jockey One;
+    background-size: 150%;
+    background-color: black;
+    font-size: 15px;
+    overflow:hidden;
+    display: flex;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 0.75; /* Firefox */
+}
+
+#testGif{
+ background-image :url(../assets/loosingScreen.jpg);
+ left: 200px;
+ top: 200px;
+ display: block;
+
+}
+
+#HomeTemplate
+{
+    position: absolute;
+    width: 250px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 15%;
+    z-index: 1;
+}
+
+.usernameInput
+{
+    font-family: Jockey One;
+    font-size: 25px;
+    text-align: center;
+    width: 250px;
+    height: 50px;
+    margin: 10px 0px;
+    padding: 10px;
+    background-color: rgba(245, 245, 220, 0.5);
+    border: 0;
+    outline: none;
+}
+
+.clickableButton {
+    font-family: Jockey One;
+    font-size: 40px;
+    width: 250px;
+    height: 75px;
+    border: 0;
+    outline: none;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.clickableButton:hover {
+    color: black;
+    background-color: white;
+}
+
+#stage{
+     /* comportement visuel de cellule */
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: block; /* contexte sur le parent */
+    flex-direction: column; /* direction d'affichage verticale */
+    justify-content: center; /* alignement vertical */
+    z-index: 0;
+}
+
+#container{
+    overflow:hidden;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+#hudTop {
+    position: absolute;
+    top:20px;
+    left :0;
+    right :0;
+    height: 100px;
+    z-index : 5000;
+    display: none;
+}
+
+#hudPlayer1, #hudPlayer2{
+    position: absolute;
+    font-weight: bold;
+    font-size: 2em;
+    color: aliceblue;
+    width: 45%;
+    height: 100%;
+}
+
+#hudPlayer1{
+    left: 0;
+    font-weight: bold;
+    /*background-color:beige;*/
+}
+
+#hudPlayer2{
+    right: 0;
+    text-align: right;
+    /*background-color:aquamarine;*/
+}
+
+#lifeBarPlayer1, #lifeBarPlayer2, .playerName {
+    display: block;
+    position: absolute;
+    left: 20px;
+    right : 20px;
+}
+
+.playerName {
+    position: sticky;
+    width: 200px;
+    background-color: black;
+    padding: 2px 0px;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.playerNameLeft {
+    left: 20px;
+    -ms-transform: skew(-30deg); /* IE 9 */
+    -webkit-transform: skew(-30deg); /* Safari */
+    transform: skew(-30deg);
+}
+
+.playerNameRight {
+    float: right;
+    right: 20px;
+    -ms-transform: skew(30deg); /* IE 9 */
+    -webkit-transform: skew(30deg); /* Safari */
+    transform: skew(30deg);
+}
+
+.playerName span{
+    display: block;
+}
+
+.playerNameLeft span{
+    -ms-transform: skew(30deg); /* IE 9 */
+    -webkit-transform: skew(30deg); /* Safari */
+    transform: skew(30deg);
+}
+
+.playerNameRight span{
+    -ms-transform: skew(-30deg); /* IE 9 */
+    -webkit-transform: skew(-30deg); /* Safari */
+    transform: skew(-30deg);
+}
+
+#lifeBarPlayer1, #lifeBarPlayer2 {
+    top : 34px;
+}
+
+#hits {
+    position: absolute;
+    top: 235%;
+    left:0;
+    right: 0;
+    margin: auto;
+    display: none;
+    color: red;
+    font-size: 5em;
+    line-height: 0;
+    text-align: center;
+    transition: font-size 0.1s;
+    transition-timing-function: cubic-bezier(0,0.5,0,40);
+}
+
+.lifeBarMask {
+    overflow: hidden;
+    height: 36px;
+    border: 3px solid black;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
+.lifeBarMaskLeft {
+    -ms-transform: skew(30deg); /* IE 9 */
+    -webkit-transform: skew(30deg); /* Safari */
+    transform: skew(30deg);
+}
+
+.lifeBarMaskRight {
+    -ms-transform: skew(-30deg); /* IE 9 */
+    -webkit-transform: skew(-30deg); /* Safari */
+    transform: skew(-30deg);
+}
+
+.lifeBar {
+    position: absolute;
+    width: 100%;
+    height:30px;
+    box-shadow: inset 0px 0px 5px 5px rgba(255, 237, 193, 0.75);
+    background: linear-gradient(to right, #9a7200, #9a7200, #ffedc1);
+    transition: width 0.1s;
+}
+
+#lifeBarPlayer1 .lifeBar {
+    right: 0;
+    background: linear-gradient(to right, #ffedc1, #9a7200, #9a7200);
+}
+
+.redlifeBar {
+    box-shadow: 0 0 0 0;
+    background: linear-gradient(to right, red, rgba(255, 0, 0, 0.2));
+    transition : width 2.5s;
+}
+
+#lifeBarPlayer1 .redlifeBar {
+    right: 0;
+    background: linear-gradient(to left, red, rgba(255, 0, 0, 0.2));
+}
+
+#gamePlane{
+    position: relative;
+    background:url(../assets/images/ingame-bg.jpg) no-repeat center bottom -100px;
+    width: 100%;
+    height: 132%; /*75% en jeu*/
+    transition: height 2s;
+    transition-timing-function: ease-out;
+}
+
+#tchat{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 0;
+    background-color: red;
+}
+
+#tchatP1, #tchatP2{
+    position: absolute;
+    bottom: 320px;
+    padding: 0.25vw 1vw;
+    width: max-content;
+    height: max-content;
+    max-width: 20vw;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 1.2em;
+    color: white;
+}
+
+#tchatP1{
+    right: 40px;
+    display: none;
+}
+
+#tchatP2{
+    left: 40px;
+    display: none;
+}
+
+.bubbleArrow{
+    position: absolute;
+    right: 20px;
+    bottom: -20px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 20px 0px 0px;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+}
+
+#tchatP1 .bubbleArrow{
+    right: 8px;
+}
+
+#tchatP2 .bubbleArrow{
+    left: 8px;
+    border-width: 20px 0px 0px 20px;
+}
+
+#inputText{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1%;
+    height: 20%;
+    border: 0;
+    box-shadow: inset 0 0 15px 0px black;
+    background: rgba(255, 250, 236, 0.75);
+    outline: none;
+    color: black;
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+#CardType{
+  margin: 20px ;
+}
+
+#hudCard {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 95.5%;
+    z-index: 9999;
+    display: none;
+}
+
+#hand, #deck{
+    position: absolute;
+    bottom: 0;
+    margin: 0px 10px;
+}
+
+#hand{
+    left: 150px;
+}
+
+.card{
+    position: relative;
+    margin: 20px 5px;
+    width: 100px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: -webkit-center;
+}
+
+.card img {
+    width: 100%;
+    transition: transform 0.5s;
+    backface-visibility: hidden;
+}
+
+.cardAnimation{
+    transition: transform 0.5s;
+}
+
+.cardAnimation:hover {
+    transform: scale(1.2);
+}
+
+.cardAnimation:hover .face {
+    box-shadow: 0 0 20px 1px rgb(24, 112, 208);
+}
+
+.card .face{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: perspective(250px) rotateY(180deg);
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.card .back{
+    transform: perspective(250px) rotateY(0deg);
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+#card0{
+    left: -150px;
+}
+
+#card1{
+    left: -262px;
+}
+
+#card2{
+    left: -374px;
+}
+
+.power{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 97%;
+    font-size: 2.5em;
+    text-align: right;
+    transform: perspective(250px) rotateY(180deg);
+    transition: transform 0.5s;
+    backface-visibility: hidden;
+}
+
+.power span{
+    position: absolute;
+    right: 10px;
+    bottom : 0;
+}
+
+#hudBottom {
+    position: relative;
+    height: 25%;
+    bottom:0;
+    background-image: url(../assets/images/bg_bottom.jpg);
+    box-shadow: 0 0 25px 0px black;
+}
+
+#messageSystem{
+    display: table;
+    width: 100%;
+    height: 80%;
+    font-size: 3em;
+}
+
+#messageSystem span{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#selectorMenu {
+    position: absolute;
+    cursor: pointer;
+    background-image: url(../assets/settings_menu.png);
+    background-size: 100%;
+    background-position: bottom 50% right 50%;
+    background-repeat: no-repeat;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    z-index: 9999;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 2%;
+    height: 25%;
+    left: 98%;
+    top: 27%;
+}
+
+#optionMenu {
+    position: absolute;
+    background-color: rgb(190, 185, 207, 0.5);
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    z-index: 9999;
+    left: 100%;
+    width: 180px;
+    height: 185px;
+}
+
+#surrendBanner {
+    position: relative;
+    border: none;
+    cursor: pointer;
+    left: 32%;
+    bottom: 60%;
+    margin: 3%;
+    width: 41%;
+    height: 38%;
+    background: url(../assets/images/surrendIcon.png) -6px 0px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 9999;
+}
+
+#surrendBanner:hover{
+    background: url(../assets/images/surrendIconHover.png) -6px 0px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#ground {
+    position : absolute;
+    left : 0;
+    right : 0;
+    bottom: 0;
+    margin: auto;
+    width: 0;
+    z-index: 1;
+
+}
+#groundLeft, #groundRight {
+    position : absolute;
+    bottom: 0;
+}
+
+#groundLeft {
+    right : -140px;
+}
+
+#groundRight {
+    left : -140px;
+    display: none;
+}
+
+#SoundMainMenu{
+    display: none;
+}
+
+#continueButton{
+    top: 80%;
+    left:42%;
+    display: none;
+}
+
+/* ---- SOUNDFX ---- */
+#soundChanger{
+    display: block;
+    z-index: 9999;
+    top: 11px;
+    left: 25%;
+    transform: scale(0.8);
+    background-image: url(../assets/Volume_On.png);
+    position: relative;
+    background-size: cover;
+    width: 59%;
+    height: 74px;
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* ---- PLAYER ---- */
+#player1, #player2 {
+    /*transform: translateY(-1);*/
+    width : 432px;
+    height: 342px;
+}
+
+#player1 {
+    left:50%;
+}
+
+#player2 {
+    right:50%;
+    transform: scaleX(-1);
+}
+
+/* ------ TIMER ------ */
+
+#hudTimer {
+  position:absolute;
+  top: 60%;
+  left : 0;
+  right : 0;
+  margin: auto;
+  width: 30%;
+  display: none;
+}
+
+#timeLine{
+    top: -23px;
+    position: relative;
+}
+
+.timerName{
+    position: sticky;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 75px;
+    margin: auto;
+    background-color: black;
+    transform: perspective(200px) rotateX(60deg);
+}
+
+#hudTimer span{
+    position: absolute;
+    top: 18px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 2em;
+    letter-spacing: 1px;
+    color: white;
+    z-index: 2;
+}
+
+.timeBarMask {
+    overflow: hidden;
+    height: 30px;
+    border: 3px solid black;
+    background-color: rgba(0, 0, 0, 0.3);
+    text-align: -webkit-center;
+    transform: perspective(250px) rotateX(-60deg);
+}
+
+.timeBar {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    box-shadow: inset 0px 0px 5px 5px rgba(255, 193, 193, 0.75);
+    background: linear-gradient(to right, #9a0000, #9a0000, #ffc1c1, #9a0000, #9a0000);
+    transition-timing-function: linear;
+}
+
+
+/* ------ RESPONSIVE ------ */
+
+@media screen and (max-width:650px)
+{
+    body{
+        width: 600px;
+    }
+}
+
+
+/* ------ DEBUG ------ */
+
+#Debug{
+    position: absolute;
+    z-index: 9999;
+    height: 50px;
+    display: none;
+}
+
+#meteorContainer {
+  background-image: url(../assets/bgMeteor.gif);
+  background-size: cover;
+  background-position-x: center;
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}

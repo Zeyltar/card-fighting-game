@@ -1,0 +1,56 @@
+{
+    "cardsInHand" : 3,
+    "life" : 200,
+    "meteorTime" : 10,
+    "cards" : {
+        "high" : [
+            {"power":50, "number":5},
+            {"power":60, "number":5},
+            {"power":70, "number":5},
+            {"power":80, "number":5},
+            {"power":90, "number":5}
+        ],
+        "middle" : [
+            {"power":50, "number":5},
+            {"power":60, "number":5},
+            {"power":70, "number":5},
+            {"power":80, "number":5},
+            {"power":90, "number":5}
+        ],
+        "low" : [
+            {"power":50, "number":5},
+            {"power":60, "number":5},
+            {"power":70, "number":5},
+            {"power":80, "number":5},
+            {"power":90, "number":5}
+        ],
+        "guard" : [
+            {"power":50, "number":5},
+            {"power":60, "number":5},
+            {"power":70, "number":5},
+            {"power":80, "number":5},
+            {"power":90, "number":5}
+        ]
+    },
+    "cardWeakness" : {
+      "high":   {"high":    0,
+                 "middle": -1,
+                 "low":     1,
+                 "guard":  -2},
+
+      "middle": {"high":    1,
+                 "middle":  0,
+                 "low":    -1,
+                 "guard":  -2},
+
+      "low":    {"high":   -1,
+                 "middle":  1,
+                 "low":     0,
+                 "guard":  -2},
+
+      "guard":  {"high":    2,
+                 "middle":  2,
+                 "low":     2,
+                 "guard":   3}
+    }
+}

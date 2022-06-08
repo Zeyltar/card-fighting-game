@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+    <head>
+        <meta charset="utf-8" name="theme-color" content="#d60a11">
+        <title>CFG</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="./style/style.css" media="screen" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="./assets/favicon.png"/>
+        <link href="https://fonts.googleapis.com/css?family=Jockey+One" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="./ext_libs/require.js" data-main="./scripts/main.js"></script>
+    </head>
+
+    <body>
+
+        <div id="Debug">
+            <button type="button" class="debugButton" id="GoToWinScreen">Win Screen</button>
+            <button type="button" class="debugButton" id="GoToLoseScreen">Losing Screen</button>
+            <button type="button" class="debugButton" id="StartMeteor"> Launch MS </button>
+        </div>
+
+        <div id="HomeTemplate">
+            <input class="usernameInput" type="text" placeholder="Username"> </input>
+            <button type="button" class="clickableButton" id="NextButton"> NEXT </button>
+        </div>
+
+        <div class="looseTemplate">
+            <button type="button" class= "clickableButton" id = "continueButton">Continue</button>
+        </div>
+
+        <div class="winTemplate">
+            <button type="button" class= "clickableButton" id = "continueButton">Continue</button>
+        </div>
+
+        <div id="stage">
+
+            <div id="container">
+
+                <div id="hudTop">
+                    <div id="hudPlayer1">
+                        <div class="playerName playerNameLeft">
+                            <span>Masamune</span>
+                        </div>
+                        <div id="lifeBarPlayer1">
+                            <div class="lifeBarMask lifeBarMaskLeft">
+                                <div class="lifeBar lifeBarLeft redlifeBar"></div>
+                                <div class="lifeBar lifeBarLeft"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="hudPlayer2">
+                        <div class="playerName playerNameRight">
+                            <span>Nemusama</span>
+                        </div>
+                        <div id="lifeBarPlayer2">
+                            <div class="lifeBarMask lifeBarMaskRight">
+                                <div class="lifeBar redlifeBar"></div>
+                                <div class="lifeBar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="hits">0</div>
+                    <div id="hudTimer">
+                        <span>Remaining</span>
+                        <div class="timerName"></div>
+                        <div id="timeLine">
+                            <div class="timeBarMask">
+                                <div class="timeBar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="gamePlane">
+                    <div id="tchat">
+                        <div id="tchatP1"><div class="bubbleArrow"></div></div>
+                        <div id="tchatP2"><div class="bubbleArrow"></div></div>
+                    </div>
+                    <div id="ground">
+
+                        <div id="groundLeft">
+
+                            <div id="player1"></div>
+                        </div>
+                        <div id="groundRight">
+                            <div id="player2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="hudCard">
+                    <div id="deck">
+                        <div class="card">
+                            <img class="back" src="./assets/images/card_back.png">
+                        </div>
+                    </div>
+                    <div id="hand">
+                        <div id="card0" class="card">
+                            <img class="back" src="./assets/images/card_back.png">
+                            <img class="face">
+                            <div class="power"><span></span></div>
+                        </div>
+                        <div id="card1" class="card">
+                            <img class="back" src="./assets/images/card_back.png">
+                            <img class="face">
+                            <div class="power"><span></span></div>
+                        </div>
+                        <div id="card2" class="card">
+                            <img class="back" src="./assets/images/card_back.png">
+                            <img class="face">
+                            <div class="power"><span></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="hudBottom">
+                    <div id="messageSystem"><span>Waiting a second player...</span></div>
+                    <div id="selectorMenu"></div>
+                    <div id="optionMenu">
+                        <button id="surrendBanner" ></button>
+                        <button type="button" id="soundChanger"></button>
+                        <button id="tutorial"></button>
+                        <audio class="backgroundSound">
+                            <audio  class="backgroundSound" id="SoundMainMenu" src="../assets/soundFX/Main_Menu.mp3"></audio>
+                            <audio  class="backgroundSound" id="SoundIG" src="./assets/soundFX/In_Game.mp3"></audio>
+                            <audio class="gameSound" id="Shuffle" src="./assets/soundFX/Shuffle.mp3"></audio>
+                            <audio class="gameSound" id="SwordSlash" src="./assets/soundFX/Sword_Slash.mp3"></audio>
+                            <audio class="gameSound" id="BeginningMeteor" src="./assets/soundFX/begin_meteor.mp3"></audio>
+                            <audio class="gameSound" id="MeteorSmash" src="./assets/soundFX/MeteorSmash.mp3"></audio>
+                            <audio class="gameSound" id="RockPaperScissor" src="./assets/soundFX/RockPaperScissor.mp3"></audio>
+                        </audio>
+                    </div>
+                    <input id="inputText" type="text" name="" placeholder="write here..." value="">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
